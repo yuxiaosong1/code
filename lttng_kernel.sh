@@ -73,6 +73,11 @@ done
 rm -rf $event_tmp_file
 rm -rf $syscall_tmp_file
 
+if [ -s $event_str ] && [ -s $syscall_str ]; then
+	echo "no event or syscall given"
+	exit 0;
+fi
+
 lttng enable-event --kernel $event_str
 lttng enable-event --kernel --syscall $syscall_str
 
